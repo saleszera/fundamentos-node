@@ -21,8 +21,15 @@ class TransactionsRepository {
     // TODO
   }
 
-  public create(): Transaction {
-    // TODO
+  public create({ title, value, type }: Omit<Transaction, 'id'>): Transaction {
+    const transaction = new Transaction({ title, value, type });
+
+    if (type !== 'income' && type !== 'outcome') {
+      throw Error("Type must be 'income' or 'outcome'!");
+    }
+    this.transactions.push(transaction);
+
+    return transaction;
   }
 }
 
