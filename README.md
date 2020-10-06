@@ -21,7 +21,7 @@ Este é o resultado do desafio do bootcamp GoStack da RocketSeat! Trata-se de um
 ### 📝️ Testando as rotas
  Abra o Insomnia
 ###### Criando uma transaction:
-1. Utilize a URL ` http://localhost:3333/transations`
+1. Utilize a URL ` http://localhost:3333/transactions`
 2. Selecione o método **POST**
 3. Clique em **Body** e selecione a opção **JSON**
  O corpo da requisição deve conter os seguintes campos:
