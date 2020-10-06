@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
+import DeleteTransactionService from '../services/DeleteTransactionService';
 
 const transactionRouter = Router();
 
@@ -29,6 +30,22 @@ transactionRouter.post('/', (request, response) => {
     const transaction = createTransaction.execute({ title, value, type });
 
     return response.json(transaction);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
+});
+
+transactionRouter.delete('/:id', (request, response) => {
+  try {
+    const { id } = request.params;
+
+    const deleteTransaction = new DeleteTransactionService(
+      transactionsRepository,
+    );
+
+    deleteTransaction.execute(id);
+
+    return response.status(204).json({ ok: true });
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }

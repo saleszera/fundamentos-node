@@ -54,6 +54,18 @@ class TransactionsRepository {
 
     return transaction;
   }
+
+  public delete(id: string) {
+    const transactionIndex = this.transactions.findIndex(
+      transaction => transaction.id === id,
+    );
+
+    if (transactionIndex < 0) {
+      throw new Error('ID does not exist');
+    }
+
+    this.transactions.splice(transactionIndex, 1);
+  }
 }
 
 export default TransactionsRepository;
