@@ -23,6 +23,12 @@ class CreateTransactionService {
       throw new Error('Value must be a number!');
     }
 
+    const { total } = this.transactionsRepository.getBalance();
+
+    if (type === 'outcome' && value > total) {
+      throw new Error("You don't have balance to do it!");
+    }
+
     const transaction = this.transactionsRepository.create({
       title,
       value,
